@@ -130,7 +130,7 @@ Fork it, open a PR, or reach out!
 
 ## 🎬 About the Author
 
-This project was created by \[Your Name] as part of a broader goal:
+This project was created by Syed Hussain Ather as part of a broader goal:
 
 > To blend full-stack software engineering, computer graphics, and machine learning into a unified creative pipeline — one that empowers science to tell visual stories.
 
