@@ -1,6 +1,8 @@
 from core.Renderer.renderer import BrainRenderer
 from core.SceneGraph.scene_loader import load_scene
 from core.utils.orbit_camera import OrbitCamera
+from core.Renderer.pointcloud_renderer import PointCloudRenderer
+
 import numpy as np
 
 
@@ -27,7 +29,18 @@ class SceneRuntime:
                     self.camera.theta = float(parts["theta"])
                     self.camera.phi = float(parts["phi"])
 
+    def _dispatch_renderables(self):
+        self.renderables = []
+
+        for node in self.scene_root.get_children():
+            if node.get_metadata().get("type") == "PointCloud":
+                path = node.get_metadata().get("data", "")
+                renderer = PointCloudRenderer(self.ctx, path)
+                self.renderables.append(renderer)
+
     def render(self, dt):
         self.renderer.camera = self.camera
         self.renderer.render(dt)
+        for r in self.renderables:
+            r.render(view, projection, self.time)
 
